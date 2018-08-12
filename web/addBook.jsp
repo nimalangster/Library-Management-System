@@ -55,7 +55,7 @@
                             var json = JSON.parse(responsex.responseText);
                             var noOfSubClass = Object.keys(json.SubClassification).length;
                            
-                            option = '<option>Select Sub Classification</option>';
+                            option = '<option value = "">Select Sub Classification</option>';
 
                             for (var x = 0; x < noOfSubClass; x++) {
                                     option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
@@ -130,6 +130,7 @@
 
                         <td> 
                             <select id="category"  name = "category" class="form-control" onchange="PopulateSubClassList()">
+                                <option value =""> Select Main Classification </option>
                                 <c:forEach items="${SetMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
                                 </c:forEach>
