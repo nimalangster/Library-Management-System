@@ -129,7 +129,7 @@ public class BookDAO implements BookDAOInterface {
 
         try {
             Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM book b JOIN main_classification mc ON b.mainClassificationId = mc.mainClassificationId JOIN sub_classification sc ON b.subClassificationId = sc.subClassificationId");
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM book b JOIN main_classification mc ON b.mainClassificationId = mc.mainClassificationId JOIN sub_classification sc ON b.subClassificationId = sc.subClassificationId ORDER BY b.title");
             ResultSet rs = pst.executeQuery();
             Set books = new HashSet();
             while (rs.next()) {

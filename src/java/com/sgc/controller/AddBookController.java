@@ -121,19 +121,21 @@ public class AddBookController extends HttpServlet {
         book.setTitle(request.getParameter("Title"));
         book.setAuthor(request.getParameter("Author"));  
         book.setIsbnNo(request.getParameter("IsbnNo"));
+        
         String x = request.getParameter("NoOfPages");        
         if(!"".equals(x)){
             book.setNoOfPages(Integer.parseInt(request.getParameter("NoOfPages")));
         }
         
-        book.setPublisher(request.getParameter("Publisher"));  
-        try{
-            book.setMainClassification(Integer.parseInt(request.getParameter("category")));        
+        book.setPublisher(request.getParameter("Publisher")); 
+        
+         if(!"".equals(request.getParameter("category"))){
+            book.setMainClassification(Integer.parseInt(request.getParameter("category")));  
+         }
+          if(!"".equals(request.getParameter("subCategory"))){
             book.setSubClassification(Integer.parseInt(request.getParameter("subCategory")));  
-        }catch (Exception ex){
-            message = "You must select both Classifications";
-            error = true;
-        }
+          }
+      
         String y = request.getParameter("YearOfPublishing"); 
         if(y != null){ 
         book.setYearOfPublishing(Integer.parseInt(request.getParameter("YearOfPublishing")));       
@@ -148,10 +150,11 @@ public class AddBookController extends HttpServlet {
                 bookDao.insertBook(book);
                 message = "The book was successfully added!";
             } catch (SQLException ex) {
+                message = "Book Id can't be duplicated. Book Id already exists! ";
                 Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);
             }   
         }
-        request.getRequestDispatcher("ViewAllBooksController?").forward(request, response);
+        request.getRequestDispatcher("ViewAllBooksController?Message="+message).forward(request, response);
         
     }
         

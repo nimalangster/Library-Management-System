@@ -21,7 +21,7 @@
     
     <div class="page-header" align = "center"><h3>View All Books</h3></div>
     
-    <h3> ${Message} </h3>
+    <h4>    <div class="container col-md-10 col-md-offset-1" align = "center" style="padding-bottom:5px;"> ${Message} </div> </h4>
         
     <div class="container col-md-10 col-md-offset-1" style="padding-bottom:50px;">
 

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Success
+    Document   : Search All Books
     Created on : Jul 29, 2018, 11:11:43 AM
     Author     : ex1
 --%>
@@ -22,10 +22,10 @@
         <h4><div class="col-md-10 col-md-offset-1" class = "container" align="center" style = "padding-bottom:20px;">
                 <form name="Search" action="SearchBookController" method="post"> 
                     
-                    <div class="col-md-4">
+                    <div class="col-md-4" align = "Left">
                     Enter Search String: <input type="text" name="SearchString"/> 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" align = "Left">
                     Filter By:
                     <select name ="FilterBy" id="FilterBy">
                         <option value="ById" >By Book ID</option>
@@ -34,11 +34,11 @@
                     </select>
                     </div>
                     
-                    <div class="col-md-2">
+                    <div class="col-md-2" align = "Left">
                         <Input class="btn btn-primary dropdown-toggle" type="submit" id="SearchBook" align="right" > </input>
                     </div>
                     
-                    <div class="col-md-2">
+                    <div class="col-md-2" align = "Left">
                         <a href="SearchBookController?mode=search" > <button type = "button" class="btn btn-primary dropdown-toggle"> View All</button> </a>
                     </div>
                 </form>
@@ -95,18 +95,18 @@
                             ${book.getLastPrintedYear()}
                         </td>
                         <td>
-                            <a href="viewBook.jsp?bookId=${book.getBookId()}"> View || <a/> 
-                                <a href = "viewBook.jsp?bookId=${book.getBookId()}">  Edit || <a/>
+                            <a href="ViewBookController?bookId=${book.getBookId()}"> View || <a/> 
+                                <a href = "ViewBookController?bookId=${book.getBookId()}">  Edit || <a/>
                                     <a href = "DeleteBookController?bookId=${book.getBookId()}"> Delete  <a/>
-                                        </td>
-                                        </tr>
-                                    </c:forEach>
-                                    </table>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-                                    <div align ="right">
-                                        <!--<a href="addBook.jsp"><button class="btn btn-info" type="button" id="AddBook" align="right"> Add Book </button></a>-->
-                                        <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home"> Home </button></a>
-                                    </div>
-                                    </div>
-                                    </body>
-                                    </html>
+        <div align ="right">
+            <!--<a href="addBook.jsp"><button class="btn btn-info" type="button" id="AddBook" align="right"> Add Book </button></a>-->
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home"> Home </button></a>
+        </div>
+    </div>
+</body>
+</html>
