@@ -101,21 +101,6 @@ public class AddBookController extends HttpServlet {
             throws ServletException, IOException {
         
         String message = "";
-        int bookId;
-        String s;
-        boolean error = false;
-        
-        s = request.getParameter("BookId");
-        if("".equals(s)){
-            message = "Id is a mandatory field";
-            error = true;
-        }
-        try{
-             bookId = Integer.parseInt(request.getParameter("BookId"));       
-             } catch (NumberFormatException e) {
-                message = "Id must be integer value!";
-                error = true;
-             }
         
         book.setBookId(Integer.parseInt(request.getParameter("BookId")));        
         book.setTitle(request.getParameter("Title"));
@@ -125,35 +110,38 @@ public class AddBookController extends HttpServlet {
         String x = request.getParameter("NoOfPages");        
         if(!"".equals(x)){
             book.setNoOfPages(Integer.parseInt(request.getParameter("NoOfPages")));
+        }else{
+            book.setNoOfPages(Integer.parseInt("0"));
         }
+        book.setPublisher(request.getParameter("Publisher"));        
         
-        book.setPublisher(request.getParameter("Publisher")); 
+        book.setMainClassification(Integer.parseInt(request.getParameter("category")));          
+       
+        book.setSubClassification(Integer.parseInt(request.getParameter("subCategory")));        
         
-         if(!"".equals(request.getParameter("category"))){
-            book.setMainClassification(Integer.parseInt(request.getParameter("category")));  
-         }
-          if(!"".equals(request.getParameter("subCategory"))){
-            book.setSubClassification(Integer.parseInt(request.getParameter("subCategory")));  
-          }
-      
-        String y = request.getParameter("YearOfPublishing"); 
-        if(y != null){ 
-        book.setYearOfPublishing(Integer.parseInt(request.getParameter("YearOfPublishing")));       
-        }
-        String z = request.getParameter("LastPrintedYear"); 
-        if(z != null){        
-        book.setLastPrintedYear(Integer.parseInt(request.getParameter("LastPrintedYear")));       
-        }
+        book.setYearOfPublishing(Integer.parseInt(request.getParameter("YearOfPublishing")));         
+                
+        book.setLastPrintedYear(Integer.parseInt(request.getParameter("LastPrintedYear")));  
         
-        if(!error){
-            try {
+        
+        try {
                 bookDao.insertBook(book);
-                message = "The book was successfully added!";
+                message = "The book is successfully added!";
             } catch (SQLException ex) {
-                message = "Book Id can't be duplicated. Book Id already exists! ";
+                if (ex.getErrorCode() == 1062) {
+                    message = "Book Id can't be duplicated. Book Id already exists! ";
+                    request.setAttribute("Message", message);
+                    doGet(request, response);
+                    request.getRequestDispatcher("ViewAllBooksController?Message="+message).forward(request, response);
+                }
+                
                 Logger.getLogger(AddBookController.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("Message", ex.getMessage());
+                doGet(request, response);
+                //request.getRequestDispatcher("ViewAllBooksController?Message="+message).forward(request, response);
+                //request.getRequestDispatcher("AddBookController?Message="+message).forward(request, response);
             }   
-        }
+        
         request.getRequestDispatcher("ViewAllBooksController?Message="+message).forward(request, response);
         
     }

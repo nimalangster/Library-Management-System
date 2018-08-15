@@ -21,7 +21,7 @@
         <div class="page-header" align = "center"><h3>View All Main Classifications</h3></div>
         <h3> ${Message} </h3>
         
-        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:50px;">
+        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">
         
         <table class="table table-striped" >
             <tr>
@@ -48,8 +48,8 @@
         </table>
         
         <div align ="right">
-        <a href="addMainClassification.jsp"><button class="btn btn-primary dropdown-toggle" type="button" id="AddBook" align="right"> Add Main Classification </button></a>
-        <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home"> Home </button></a>
+        <a href="addMainClassification.jsp"><button class="btn btn-primary dropdown-toggle" type="button" id="AddBook" align="right" style = "min-width: 200px;"> Add Main Classification </button></a>
+        <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
         </div>
         </div>
     </body>

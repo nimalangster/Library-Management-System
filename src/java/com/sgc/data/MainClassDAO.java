@@ -50,7 +50,10 @@ public class MainClassDAO implements MainClassDAOInterface{
                 }
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
     
@@ -70,7 +73,10 @@ public class MainClassDAO implements MainClassDAOInterface{
                 }
         } catch (SQLException ex) {
         System.out.println(ex.getMessage()) ;
-        }    
+        }  
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return 0;
     }
     
@@ -92,7 +98,9 @@ public class MainClassDAO implements MainClassDAOInterface{
             return mainClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }    finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
      
      }
@@ -112,7 +120,10 @@ public class MainClassDAO implements MainClassDAOInterface{
             return mainClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }  
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
      
@@ -131,7 +142,10 @@ public class MainClassDAO implements MainClassDAOInterface{
             return mainClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }   
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
     
@@ -167,6 +181,9 @@ public class MainClassDAO implements MainClassDAOInterface{
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
      
@@ -187,6 +204,9 @@ public class MainClassDAO implements MainClassDAOInterface{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return false;
     }
 
@@ -206,6 +226,9 @@ public class MainClassDAO implements MainClassDAOInterface{
         } catch(Exception e){
                System.out.println(e.getMessage()) ;
         } 
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return false;
     }    
     

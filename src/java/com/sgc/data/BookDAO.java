@@ -65,11 +65,15 @@ public class BookDAO implements BookDAOInterface {
 
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return extractBookFromResultSetView(rs);
+                return extractBookFromResultSet(rs);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
+        
         return null;
     }
 
@@ -89,12 +93,15 @@ public class BookDAO implements BookDAOInterface {
             ResultSet rs = pst.executeQuery();
             Set books = new HashSet();
             while (rs.next()) {
-                Book book = extractBookFromResultSetView(rs);
+                Book book = extractBookFromResultSet(rs);
                 books.add(book);
             }
             return books;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        finally{
+            ConnectionFactory.disConnect();
         }
         return null;
     }
@@ -114,12 +121,15 @@ public class BookDAO implements BookDAOInterface {
             ResultSet rs = pst.executeQuery();
             Set books = new HashSet();
             while (rs.next()) {
-                Book book = extractBookFromResultSetView(rs);
+                Book book = extractBookFromResultSet(rs);
                 books.add(book);
             }
             return books;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        finally{
+            ConnectionFactory.disConnect();
         }
         return null;
     }
@@ -140,6 +150,9 @@ public class BookDAO implements BookDAOInterface {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
 
@@ -155,9 +168,9 @@ public class BookDAO implements BookDAOInterface {
         pst.setString(3, book.getTitle());
         pst.setString(4, book.getAuthor());
         pst.setString(5, book.getPublisher());
-        pst.setInt(6, book.getNoOfPages());
-        pst.setInt(7, book.getMainClassification());
-        pst.setInt(8, book.getSubClassification());
+        pst.setInt(6,(int) book.getNoOfPages());
+        pst.setInt(7, (int) book.getMainClassification());
+        pst.setInt(8, (int) book.getSubClassification());
         pst.setInt(9, (int) book.getYearOfPublishing());
         pst.setInt(10, (int) book.getLastPrintedYear());
 
@@ -195,6 +208,9 @@ public class BookDAO implements BookDAOInterface {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return false;
     }
 
@@ -213,6 +229,9 @@ public class BookDAO implements BookDAOInterface {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return false;
     }
 
@@ -229,6 +248,9 @@ public class BookDAO implements BookDAOInterface {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+        finally{
+            ConnectionFactory.disConnect();
         }
         return false;
     }

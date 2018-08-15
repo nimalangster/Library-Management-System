@@ -30,11 +30,11 @@
                 String mainClass =  request.getAttribute("MainClass").toString(); 
                 String mode = request.getParameter("mode");
             %>
-                   
-                    var s = "<%=mainClass%>";
-                    //alert(s);
-                    $("#category").val(<%=request.getAttribute("MainClass").toString()%>);
-                
+                   $("#category").val(${subClass.getMainClassId()});
+//                    var s = "<%=mainClass%>";
+//                    //alert(s);
+//                    $("#category").val(<%=request.getAttribute("MainClass").toString()%>);
+//                
             });
          </script>    
     </head>
@@ -47,7 +47,8 @@
             <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View or Edit Sub Classification </label></h3></div>        
             <%}%>
             
-        <div class="container" padding-bottom = "50px">  
+        <div class="container" padding-bottom = "150px">  
+            
             <% if ("ConfirmDelete".equals(mode)) {%>
                 <form action ="DeleteSubClassificationController" method="get" id = "viewForm">
             <%}else{%>

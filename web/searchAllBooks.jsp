@@ -17,37 +17,48 @@
     <body>
         <%@include file = "Shared/header.jsp" %>    
 
-        <div class="container" align = "Center" style="padding-bottom: 10px"><h3>Search All Books</h3></div>       
+        <div class="container" align = "Center" style = "padding-bottom: 15px">
+        <div class="container" align = "Center" style="padding-bottom: 20px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading"style="width: 400px; display: inline-block;"> ${Heading} </label></h3></div>
+        </div>  
 
-        <h4><div class="col-md-10 col-md-offset-1" class = "container" align="center" style = "padding-bottom:20px;">
+        <div class="col-md-10 col-md-offset-1" class = "container" align="center" style = "padding-bottom:50px;">
                 <form name="Search" action="SearchBookController" method="post"> 
-                    
-                    <div class="col-md-4" align = "Left">
-                    Enter Search String: <input type="text" name="SearchString"/> 
+                   <h4> 
+                    <div class="col-md-2" align = "Left">
+                    Enter Search String: 
                     </div>
-                    <div class="col-md-4" align = "Left">
+                    
+                    <div class="col-md-2" align = "Left">
+                    <input class="form-control" type="text" name="SearchString"/> 
+                    </div>
+                    
+                    <div class="col-md-2" align = "Center">
                     Filter By:
-                    <select name ="FilterBy" id="FilterBy">
+                    </div>
+                    
+                    <div class="col-md-2" align = "Left">
+                    <select name ="FilterBy" id="FilterBy" class="form-control">
                         <option value="ById" >By Book ID</option>
                         <option value="ByName"> By Book Name</option>
                         <option value="Author"> By Book Author</option>
                     </select>
                     </div>
                     
-                    <div class="col-md-2" align = "Left">
-                        <Input class="btn btn-primary dropdown-toggle" type="submit" id="SearchBook" align="right" > </input>
+                    <div class="col-md-2" align = "right">
+                        <Input class="btn btn-primary dropdown-toggle" type="submit" id="SearchBook" align="right" style = "min-width: 200px;"> </input>
                     </div>
                     
-                    <div class="col-md-2" align = "Left">
-                        <a href="SearchBookController?mode=search" > <button type = "button" class="btn btn-primary dropdown-toggle"> View All</button> </a>
+                    <div class="col-md-2" align = "right">
+                        <a href="SearchBookController?mode=ViewAll" > <button type = "button" class="btn btn-primary dropdown-toggle" style = "min-width: 200px;" align="right"> View All</button> </a>
                     </div>
+                   </h4>
                 </form>
             </div></h4>
             
-        <h3> ${Message} </h3>
+        <div class="container" align ="center" > <h4> <label>${Message}</label> </h4></div>
 
-        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:50px;">          
-            <table class="table table-striped" >
+        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">          
+            <table class="table table-striped" class="form-control">
                 <tr>
                     <th>Book ID</th>
                     <th>Title</th>
@@ -105,7 +116,7 @@
 
         <div align ="right">
             <!--<a href="addBook.jsp"><button class="btn btn-info" type="button" id="AddBook" align="right"> Add Book </button></a>-->
-            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home"> Home </button></a>
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" class="form-control" style = "min-width: 200px;"> Home </button></a>
         </div>
     </div>
 </body>

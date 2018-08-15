@@ -16,9 +16,9 @@
                     <div class="dropdown-content">
                         <a href = "ViewAllBooksController">View All Books</a>
                         <a href = "AddBookController">Add Book</a>
-                        <a href = "searchAllBooks.jsp">Edit Book</a>
-                        <a href = "searchAllBooks.jsp">Delete Book</a>
-                        <a href = "searchAllBooks.jsp">Search Book</a>
+                        <a href = "SearchBookController?mode=edit">Edit Book</a>
+                        <a href = "SearchBookController?mode=delete">Delete Book</a>
+                        <a href = "SearchBookController?mode=search">Search Book</a>
                     </div>
                 </div>
 

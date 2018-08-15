@@ -64,7 +64,7 @@ public class EditSubClassificationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int classId = Integer.parseInt(request.getParameter("ClassId"));
+        int classId = Integer.parseInt(request.getParameter("classId"));
         String className = request.getParameter("ClassName");
         int mainClassId = Integer.parseInt(request.getParameter("category"));
         

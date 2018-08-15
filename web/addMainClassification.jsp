@@ -22,8 +22,17 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
-       
-               
+        function formValidation(){
+
+                 var x = $('#ClassName').val();
+                 var errorMessage;
+                 if(!x){
+                     errorMessage = "Main Classification Name can't be empty!";
+                     $('#errorMessage').text(errorMessage);
+                     return false;
+                    }
+                 }                
+                            
         </script>
 
     </head>
@@ -32,18 +41,23 @@
     <body>
         <%@include file = "Shared/header.jsp" %>    
 
-        <div class="container" padding-bottom = "50px">
-            <div class="jumbotron-fluid" align = "center"><h2>Add Main Classification </h2></div>
-            <form action ="AddMainClassificationController" method="get" id = "addForm">
+        <div class="container" align = "Center" style="padding-bottom: 20px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading"style="width: 400px; display: inline-block;"> Add Main Classification </label></h3></div>
+         
+        <div  class = "col-md-10 col-md-offset-1" align = "center"><h4><span  id = "errorMessage" style = "color: red"> </span></h4></div>
+
+            <div class="container" padding-bottom = "150px">
+
+            <form action ="AddMainClassificationController" method="get" id = "addForm" onsubmit="return formValidation();">
+                
                 <table class="table table-striped">
                     <tr> 
                         <td> Main Classification Id :</td> 
-                        <td> <label  class="form-control"  name = "ClasssId">  </label></td>
+                        <td> <label  class="form-control"  name = "ClasssId"> Auto Generated Id </label></td>
                     </tr>
 
                     <tr> 
                         <td> Main Classification Name :</td> 
-                        <td> <input  class="form-control" type="text" name = "ClassName"> </td>
+                        <td> <input  class="form-control" type="text" name = "ClassName" id = "ClassName"> </td>
                     </tr>
                 </table>
                 <div align = "right">
@@ -51,10 +65,7 @@
                     <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
                 </div>
             </form>
-
-
         </div>
-
     </body>
 </html>
 

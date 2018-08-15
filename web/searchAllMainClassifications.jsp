@@ -19,33 +19,46 @@
     <body>
         <%@include file = "Shared/header.jsp" %>    
 
-        <div class="container" align = "Center" style = "padding-bottom: 10px">
-            <h3><label class="label label-primary" name = "heading"> ${Heading}</label></h3>
+        <div class="container" align = "Center" style = "padding-bottom: 15px">
+                       <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> ${Heading} </label></h3></div>
+
         </div>      
 
         <h4><div class="col-md-10 col-md-offset-1" class = "container" style = "padding-bottom:20px;">
                 <form name="Search" action="SearchMainClassificationController" method="post">
-                    <div class="col-md-4">
+                    
+                    <div class="col-md-2" align = "Left" class="form-control">
                     Enter Search String:
-                    <input type="text" name="SearchString"/>
                     </div>
                     
-                    <div class="col-md-4">Filter By:
-                    <select name ="FilterBy" id="FilterBy">
+                    <div class="col-md-2" align = "Left" class="form-control">
+                    <input type="text" name="SearchString" class="form-control"/>
+                    </div>
+                    
+                    <div class="col-md-2" align = "Center" class="form-control">
+                    Filter By:
+                    </div>
+                    
+                    <div class="col-md-2" align = "Left" class="form-control">
+                    <select name ="FilterBy" id="FilterBy" class="form-control">
                         <option value="ById" >By Classification ID</option>
                         <option value="ByName"> By Classification Name</option>                        
                     </select>
                     </div>
                     
-                    <div class="col-md-2"><Input class="btn btn-primary dropdown-toggle" type="submit" id="SearchClass" align="right" > </input></div>
-                    <div class="col-md-2"><a href="SearchMainClassificationController?mode=search" > <button type = "button" class="btn btn-primary dropdown-toggle"> View All</button> </a>
+                    <div class="col-md-2" align = "right" class="form-control">
+                        <Input class="btn btn-primary dropdown-toggle" type="submit" id="SearchClass" align="right" style = "min-width: 200px;"> </input>
+                    </div>
+                    
+                    <div class="col-md-2" align = "right" class="form-control">
+                        <a href="SearchMainClassificationController?mode=search" > <button type = "button" class="btn btn-primary dropdown-toggle" style = "min-width: 200px;" align="right"> View All</button> </a>
                     </div>
                 </form>
             </div></h4>
 
         <div class="container" align ="center" > <h4> <label>${Message}</label> </h4></div>
 
-        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:50px;">          
+        <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">          
             <table class="table table-striped" >
                 <tr>
                     <th>Main Classification ID</th>
@@ -72,8 +85,8 @@
             </table>
 
         <div align ="right">
-            <a href="addMainClassification.jsp"><button class="btn btn-primary dropdown-toggle" type="button" id="AddClass" align="right"> Add Main Class </button></a>
-            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home"> Home </button></a>
+            <a href="addMainClassification.jsp"><button class="btn btn-primary dropdown-toggle" type="button" id="AddClass" align="right" style = "min-width: 200px;"> Add Main Class </button></a>
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
         </div>
         </div>
     </body>

@@ -104,9 +104,9 @@
 
         <%@include file = "Shared/header.jsp" %>    
 
-        <div class="container" class="page-header" align = "center"><h3>View/Update Book</h3></div>
+        <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> View/Update Book </label></h3></div>
         
-        <div class="container" padding-bottom = "50px">  
+        <div class="container" padding-bottom = "150px">
             
             <form action ="EditBookController" method="get" id = "viewForm">
                 <table class="table table-striped">

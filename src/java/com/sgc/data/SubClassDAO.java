@@ -53,7 +53,10 @@ public class SubClassDAO implements SubClassDAOInterface{
                 return rs.getString("subClassificationName");
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }   
+        finally{
+            ConnectionFactory.disConnect();
+        }
      return null;
      }
      
@@ -69,7 +72,10 @@ public class SubClassDAO implements SubClassDAOInterface{
                 return rs.getInt("subClassificationId");
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }   
+        finally{
+            ConnectionFactory.disConnect();
+        }
        return 0;
     }   
     
@@ -91,7 +97,10 @@ public class SubClassDAO implements SubClassDAOInterface{
                 }
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }  
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
     
@@ -114,7 +123,10 @@ public class SubClassDAO implements SubClassDAOInterface{
             return subClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        } 
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
     
@@ -135,7 +147,10 @@ public class SubClassDAO implements SubClassDAOInterface{
             return subClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }  
+        finally{
+            ConnectionFactory.disConnect();
+        } 
         return null;
      
      }
@@ -155,7 +170,10 @@ public class SubClassDAO implements SubClassDAOInterface{
             return subClasses;
         } catch (SQLException ex) {
         ex.printStackTrace();
-        }    
+        }  
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return null;
     }
     
@@ -193,6 +211,9 @@ public class SubClassDAO implements SubClassDAOInterface{
         } catch(Exception e){
                System.out.println(e.getMessage()) ;
         } 
+        finally{
+            ConnectionFactory.disConnect();
+        }
         return false;
     }    
 

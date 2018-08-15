@@ -9,6 +9,7 @@ import com.sgc.data.BookDAO;
 import com.sgc.data.MainClassDAO;
 import com.sgc.data.SubClassDAO;
 import com.sgc.model.Book;
+import com.sgc.model.MainClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
@@ -91,7 +92,44 @@ public class SearchBookController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {      
         
+        String s2 = request.getParameter("mode").toString();
+        String Heading = "";
+        String RecordCount;
         
+        if ("edit".equals(s2)) {
+            Heading = "Select Book to Edit";
+        } else if ("delete".equals(s2)) {
+            Heading = "Select Book to Delete";
+        } else if ("search".equals(s2)){
+            Heading = "Search for books";
+        }else if ("ViewAll".equals(s2)){
+            Heading = "View All Books";
+        }else if ("Deleted".equals(s2)){
+            Heading = "The selected Book is successfully deleted!";
+        }else if ("Edited".equals(s2)){
+            Heading = "The selected Book is successfully updated!";
+        }
+        
+        Set <Book> setBook = new HashSet();
+        int i = setBook.size();
+        try{
+                BookDAO bookdao = new BookDAO();
+                setBook = bookdao.getAllBooks();           
+                i = setBook.size();
+                } catch(Exception e){
+                       System.out.println(e.getMessage()) ; 
+            }  
+        if (i == 0) {
+                RecordCount = "No records found!";
+            } else {
+                RecordCount = "(" + i + ") Record(s) found!";
+            }
+        
+        request.setAttribute("Message", RecordCount);
+        request.setAttribute("Heading", Heading);
+        request.setAttribute("SetBooks", setBook);         
+        request.getRequestDispatcher("/searchAllBooks.jsp").forward(request, response);      
+
        
     }
 
@@ -107,7 +145,8 @@ public class SearchBookController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         String message = "";
+        String message;
+        
         String s = request.getParameter("FilterBy");
         Set <Book> setBook = new HashSet();
         
@@ -160,8 +199,9 @@ public class SearchBookController extends HttpServlet {
                        System.out.println(e.getMessage()) ;
             }  
             
-        }          
-            
+        }      
+            String Heading = "Search All Books";
+            request.setAttribute("Heading", Heading);
             request.setAttribute("SetBooks", setBook); 
             request.setAttribute("Message", request.getParameter("Message"));
             request.getRequestDispatcher("/searchAllBooks.jsp").forward(request, response);      

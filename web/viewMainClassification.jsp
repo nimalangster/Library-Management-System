@@ -34,9 +34,9 @@
     <body>
         <%@include file = "Shared/header.jsp" %>    
 
-        <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification </label></h3></div>      
+         <div class="page-header" align = "center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification </label></h3></div>      
         
-        <div class="container" padding-bottom = "50px"> 
+        <div class="container" padding-bottom = "150px"> 
             <form action ="EditMainClassificationController" method="get" id = "viewForm">
                 <table class="table table-striped">
                     <tr> 

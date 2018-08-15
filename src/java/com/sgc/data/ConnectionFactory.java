@@ -17,7 +17,7 @@ public class ConnectionFactory {
    static final String DB_URL = "jdbc:mysql://localhost/library?useSSL=false";
     //  Database credentials
    static final String USER = "root";
-   static final String PASS = "manager";
+   static final String PASS = "root";
    static Connection conn = null; 
     
     public static Connection getConnection() throws SQLException{
@@ -31,5 +31,15 @@ public class ConnectionFactory {
           System.out.println("Error:: " + ex.getMessage());
       }
         return conn;        
-    }    
+    }  
+    
+    public static void disConnect() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+        }
+    }   
 }

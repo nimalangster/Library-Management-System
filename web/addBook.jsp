@@ -72,7 +72,44 @@
                             });
                             return false;
             }
-
+            
+            function isInt(value) {
+                return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
+            }
+            
+            function formValidation(){
+               
+                var x = $('#BookId').val();
+                var y = $('#NoOfPages').val();
+                var cat = $('#category').val();
+                var sCat = $('#subCategory').val();
+                
+                var errorMessage;
+                if(!x){
+                    errorMessage = "Book Id can't be null!";
+                    $('#errorMessage').text(errorMessage);
+                    return false;
+                }else{
+                     if(!isInt(x)){
+                        errorMessage = "Book Id must be integer!";
+                        $('#errorMessage').text(errorMessage);
+                        return false;
+                     }else{
+                            if(!cat){
+                                errorMessage = "Main Classification is mandatory!";
+                                $('#errorMessage').text(errorMessage);
+                                return false;
+                                }else{
+                                    if(!sCat){
+                                        errorMessage = "Sub Classification is mandatory!";
+                                        $('#errorMessage').text(errorMessage);
+                                        return false;
+                                    }
+                                }                  
+                            }                    
+                    }
+                }
+           
         </script>
 
     </head>
@@ -91,15 +128,19 @@
 
     %>  
     <body>
-        <%@include file = "Shared/header.jsp" %>    
-
-        <div class="container" padding-bottom = "50px">
-            <div class="jumbotron-fluid" align = "center"><h2>Add Book </h2></div>
-            <form action ="AddBookController" method="post" id = "addForm">
+        <%@include file = "Shared/header.jsp" %>  
+        
+            <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> Add Book </label></h3></div>
+            
+            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red"> ${Message} </label></h4></div>
+          
+            
+            <div class="container" padding-bottom = "150px">
+            <form action ="AddBookController" method="post" id = "addForm" onsubmit="return formValidation();">
                 <table class="table table-striped">
                     <tr> 
                         <td> Book Id :</td> 
-                        <td> <input  class="form-control" type="number" name = "BookId"> </td>
+                        <td> <input  class="form-control" type="number" name = "BookId" id = "BookId"> </td>
                     </tr>
 
                     <tr> 
@@ -123,25 +164,26 @@
 
                     <tr> 
                         <td>No Of Pages :</td> 
-                        <td> <input  class="form-control" type="number" name = "NoOfPages"> </td>
+                        <td> <input  class="form-control" type="number" name = "NoOfPages" id = "NoOfPages"> </td>
                     </tr>
                     <tr>
                         <td>Main Classification :</td> 
 
                         <td> 
                             <select id="category"  name = "category" class="form-control" onchange="PopulateSubClassList()">
-                                <option value =""> Select Main Classification </option>
+                                <option value = ""> Select Main Classification </option>
                                 <c:forEach items="${SetMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
                                 </c:forEach>
                             </select>
                         </td>
-                    </tr>                 
+                    </tr>  
 
                     <tr> 
                         <td> Sub Classification :</td> 
+                        
                         <td> <select name="subCategory" id="subCategory"  class="form-control" >
-
+                                <option value = ""> Select Sub Classification </option>
                                 <c:forEach items="${SetSubClass}" var="subCategory">
                                     <option value="${subCategory.getSubClassId()}">${subCategory.getSubClassName()}</option>
                                 </c:forEach>
@@ -152,7 +194,7 @@
                     <tr> 
                         <td> Year Of Publishing :</td> 
                         <td> <select id="YearOfPublishing" onchange="populateLPY();" name = "YearOfPublishing" class="form-control">
-
+                                <option value = "0"> Select Year of publishing </option>
                                 <c:forEach items="<%=aLYOP%>" var="lYOP">
                                     <option value="${lYOP.intValue()}">${lYOP.intValue()}</option>
                                 </c:forEach>
@@ -163,7 +205,7 @@
                     <tr> 
                         <td> Last printed Year :</td> 
                         <td> <select  id = "LastPrintedYear" name = "LastPrintedYear" class="form-control"> 
-
+                            <option value = "0"> Select last printed year </option>
                             </select> 
                         </td>
                     </tr>
