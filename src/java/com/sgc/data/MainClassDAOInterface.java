@@ -20,6 +20,6 @@ public interface MainClassDAOInterface {
     Set <MainClassification> getAllMainClasses();
     boolean insertMainClass(MainClassification mainClassification) throws SQLException;
     boolean updateMainClass(MainClassification mainClassification);
-    boolean deleteMainClassById(int id);
+    boolean deleteMainClassById(int id) throws SQLException;
     Set getMainClassesByName(String name);
 }

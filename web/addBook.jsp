@@ -73,6 +73,34 @@
                             return false;
             }
             
+            
+            function validateBookId() {                    
+                    
+                    var bookId = $('#BookId').val();                   
+                    $('#errorMessage').text("");
+                    
+                    $.ajax({
+                        url: 'CheckDuplicateBookIdController?bookId=' + bookId,
+
+                        complete: function (responsex) {
+                            
+                            var json = JSON.parse(responsex.responseText);
+                             
+                            if(json){
+                                $('#errorMessage').text("Book Id already exists!");
+                                return false;
+                            } else{
+                                $('#errorMessage').text("");
+                            }                           
+                        },
+                        error: function () {
+                            console.log('Error receiving the response from json');
+                        },
+                    });
+                    return false;
+                }
+            
+            
             function isInt(value) {
                 return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
             }
@@ -99,14 +127,14 @@
                                 errorMessage = "Main Classification is mandatory!";
                                 $('#errorMessage').text(errorMessage);
                                 return false;
-                                }else{
-                                    if(!sCat){
-                                        errorMessage = "Sub Classification is mandatory!";
-                                        $('#errorMessage').text(errorMessage);
-                                        return false;
-                                    }
-                                }                  
-                            }                    
+                            } else {
+                                if (!sCat) {
+                                    errorMessage = "Sub Classification is mandatory!";
+                                    $('#errorMessage').text(errorMessage);
+                                    return false;
+                                }
+                            }
+                        }
                     }
                 }
            
@@ -132,7 +160,7 @@
         
             <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> Add Book </label></h3></div>
             
-            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red"> ${Message} </label></h4></div>
+            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> ${Message} </label></h4></div>
           
             
             <div class="container" padding-bottom = "150px">
@@ -140,7 +168,7 @@
                 <table class="table table-striped">
                     <tr> 
                         <td> Book Id :</td> 
-                        <td> <input  class="form-control" type="number" name = "BookId" id = "BookId"> </td>
+                        <td> <input  class="form-control" type="number" name = "BookId" id = "BookId" onfocusout = "validateBookId()"> </td>
                     </tr>
 
                     <tr> 

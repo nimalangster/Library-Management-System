@@ -5,11 +5,17 @@
  */
 package com.sgc.controller;
 
+import com.sgc.data.BookDAO;
 import com.sgc.data.SubClassDAO;
+import com.sgc.model.Book;
 import com.sgc.model.SubClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.util.Set;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +26,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ex1
  */
-@WebServlet(name = "DeleteSubClassificationController", urlPatterns = {"/DeleteSubClassificationController"})
-public class DeleteSubClassificationController extends HttpServlet {
+@WebServlet(name = "CheckDuplicateBookIdController", urlPatterns = {"/CheckDuplicateBookIdController"})
+public class CheckDuplicateBookIdController extends HttpServlet {
     
-    SubClassification subClass = new SubClassification();
-    SubClassDAO subDao = new SubClassDAO();
+    Book book = new Book();
+    BookDAO bookDao = new BookDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +49,10 @@ public class DeleteSubClassificationController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteSubClassificationController</title>");            
+            out.println("<title>Servlet GetSubClassListByMainClassChangeController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteSubClassificationController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet GetSubClassListByMainClassChangeController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,24 +70,31 @@ public class DeleteSubClassificationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        int classId = Integer.parseInt(request.getParameter("classId"));  
-        
-        try{
+
+        int bookId = Integer.parseInt(request.getParameter("bookId"));
+
+        Book book = bookDao.getBookById(bookId);
+
+        response.setContentType("application/json");
+        PrintWriter writer = response.getWriter();
+
+        JsonObjectBuilder rootBuilder = Json.createObjectBuilder();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        JsonObject bookJson = null;
+
+
+            JsonObjectBuilder bookBuilder = Json.createObjectBuilder();
+
+            bookJson = bookBuilder
+                    .add("bookId", book.getBookId())
+                    .add("bookName", book.getTitle())
+                    .build();
             
-            boolean success = subDao.deleteSubClassById(classId);
-            if (success)
-            {                  
-                request.getRequestDispatcher("SearchSubClassificationController?mode=Deleted").forward(request, response);               
-            }
-        }catch(SQLException ex){
-             if (ex.getErrorCode() == 1451) {
-                request.getRequestDispatcher("SearchSubClassificationController?mode=Constraint").forward(request, response);   
-             }
-            System.out.println(ex);
-        }       
-        
-        processRequest(request, response);
+        writer.print(bookJson);
+        writer.flush();
+        writer.close();
+
+       // processRequest(request, response);
     }
 
     /**

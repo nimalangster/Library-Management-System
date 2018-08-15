@@ -9,6 +9,7 @@ import com.sgc.data.MainClassDAO;
 import com.sgc.model.MainClassification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,11 +73,12 @@ public class DeleteMainClassificationController extends HttpServlet {
             if (success)
             {                  
                 request.getRequestDispatcher("SearchMainClassificationController?mode=Deleted").forward(request, response);               
-            }else{
-                request.getRequestDispatcher("SearchMainClassificationController?mode=Constraint").forward(request, response);  
             }
-        }catch(Exception ex){
-                   System.out.println(ex);
+        }catch(SQLException ex){
+             if (ex.getErrorCode() == 1451) {
+                request.getRequestDispatcher("SearchMainClassificationController?mode=Constraint").forward(request, response);  
+             }
+            System.out.println(ex);
         }       
         
     }

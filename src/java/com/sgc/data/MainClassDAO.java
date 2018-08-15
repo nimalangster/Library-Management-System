@@ -212,9 +212,9 @@ public class MainClassDAO implements MainClassDAOInterface{
 
     
     
-    @Override
-    public boolean deleteMainClassById(int mainClassId) {
-        try{            
+   // @Override
+    public boolean deleteMainClassById(int mainClassId) throws SQLException{
+                  
             Connection conn = ConnectionFactory.getConnection();
             PreparedStatement pst = conn.prepareStatement("DELETE from main_classification WHERE mainClassificationId = ?");
             
@@ -223,12 +223,8 @@ public class MainClassDAO implements MainClassDAOInterface{
             int i = pst.executeUpdate();
             if(i == 1)
                 return true;
-        } catch(Exception e){
-               System.out.println(e.getMessage()) ;
-        } 
-        finally{
-            ConnectionFactory.disConnect();
-        }
+       
+       
         return false;
     }    
     

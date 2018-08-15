@@ -20,7 +20,7 @@
         <%@include file = "Shared/header.jsp" %>    
 
         <div class="container" align = "Center" style = "padding-bottom: 15px">
-                       <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> ${Heading} </label></h3></div>
+                       <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 800px; display: inline-block;"> ${Heading} </label></h3></div>
 
         </div>      
 

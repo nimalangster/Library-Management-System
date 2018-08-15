@@ -72,7 +72,7 @@
                     <th>Last printed Year</th>
                     <th> </th>
 
-                </tr>
+                    </tr> 
                 <c:forEach items="${SetBooks}" var="book">
                     <tr>
                         <td>
