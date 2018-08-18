@@ -40,10 +40,10 @@
                     <a href = "AddBookController"><img src="Contents/Images/download.jpg" style=" "></a>
                 </div>
                 <div class="col-md-4" align="center">
-                    <a href = "ViewAllBooksController"><img src="Contents/Images/bookView.jpg" style=" " onclick="submitForm('ViewAllBooksController')"></a>
+                    <a href = "ViewAllBooksController"><img src="Contents/Images/bookView.jpg" style=" " ></a>
                 </div>
                 <div class="col-md-4" align="center" >
-                    <a href = "searchAllBooks.jsp"><img src="Contents/Images/searchBook.jpg" style=" "></a>
+                    <a href = "SearchBookController?mode=search"><img src="Contents/Images/searchBook.jpg" style=" "></a>
                 </div> 
             </div>
         </form>

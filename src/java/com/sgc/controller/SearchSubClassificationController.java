@@ -71,8 +71,9 @@ public class SearchSubClassificationController extends HttpServlet {
             throws ServletException, IOException {
 
         String s2 = request.getParameter("mode").toString();
-        String Heading = "";
+        String Heading = "Sub Classifications";
         String RecordCount;
+        String Error = "";
 
         if ("edit".equals(s2)) {
             Heading = "Select Sub Classification to Edit";
@@ -87,7 +88,7 @@ public class SearchSubClassificationController extends HttpServlet {
         } else if ("Edited".equals(s2)) {
             Heading = "The selected Sub Classification is successfully updated!";
         } else if ("Constraint".equals(s2)) {
-            Heading = "The selected Sub Classification cannot be deleted associated books are exists!";
+            Error = "The selected Sub Classification cannot be deleted associated books are exists!";
         }
 
         Set<SubClassification> setSubClassification = new HashSet();
@@ -104,8 +105,9 @@ public class SearchSubClassificationController extends HttpServlet {
         } else {
             RecordCount = "(" + i + ") Record(s) found!";
         }
-
-        request.setAttribute("Message", RecordCount);
+        
+        request.setAttribute("ErrorText", Error);
+        request.setAttribute("RecordCount", RecordCount);
         request.setAttribute("Heading", Heading);
         request.setAttribute("SetClasses", setSubClassification);
         request.getRequestDispatcher("/searchAllSubClassifications.jsp").forward(request, response);

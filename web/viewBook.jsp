@@ -27,10 +27,9 @@
             function PopulateSubClassList() {
 
                 var mainClassificationId = $('#category').val();
-
+                
                 $.ajax({
                     url: 'GetSubClassListByMainClassChangeController?mainClassificationId=' + mainClassificationId,
-
                     complete: function (responsex) {
                         var json = JSON.parse(responsex.responseText);
                         var noOfSubClass = Object.keys(json.SubClassification).length;
@@ -45,10 +44,13 @@
                                 .remove()
                                 .end()
                                 .append(option);
+                        $("#subCategory").val(${book.getSubClassification()});
+                        
                     },
                     error: function () {
                         console.log('Error receiving the response from json');
                     },
+
                 });
                 return false;
             }
@@ -78,9 +80,9 @@
 
             $(document).ready(function () {
 
-                $("#category").val(${book.getMainClassification()});
+                $("#category").val(${book.getMainClassification()});                 
+                PopulateSubClassList();
                 $("#subCategory").val(${book.getSubClassification()});
-
                 $("#YearOfPublishing").val(${book.getYearOfPublishing()});
                 $("#LastPrintedYear").val(${book.getLastPrintedYear()});
 
@@ -105,9 +107,9 @@
         <%@include file = "Shared/header.jsp" %>    
 
         <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> View/Update Book </label></h3></div>
-        
+
         <div class="container" padding-bottom = "150px">
-            
+
             <form action ="EditBookController" method="get" id = "viewForm">
                 <table class="table table-striped">
                     <tr> 
@@ -142,7 +144,7 @@
                     <tr>
                         <td>Main Classification :</td> 
                         <td>
-                            <select class="form-control" id="category" onchange="PopulateSubClassList()" name = "category" >
+                            <select class="form-control" id="category" onchange="PopulateSubClassList()"  name = "category" >
                                 <option>Select Main Classification</option>
                                 <c:forEach items="${SetMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>

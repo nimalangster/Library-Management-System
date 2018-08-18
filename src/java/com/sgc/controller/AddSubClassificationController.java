@@ -74,12 +74,18 @@ public class AddSubClassificationController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+         String mainClassId = request.getParameter("mainClassId");
+         String pageFrom = request.getParameter("pageFrom");
+         
+         if (mainClassId != null) {
+            request.setAttribute("MainClassId", mainClassId);
+            request.setAttribute("PageFrom", pageFrom);
+        }
+         
          Set setMainClass = mainClassDao.getAllMainClasses();  
          request.setAttribute("setMainClass", setMainClass);
-         request.getRequestDispatcher("/addSubClassification.jsp?mode=add").forward(request, response);
-
+         request.getRequestDispatcher("/addSubClassification.jsp?mode=add").forward(request, response);        
         
-        processRequest(request, response);
     }
 
     /**
@@ -97,8 +103,17 @@ public class AddSubClassificationController extends HttpServlet {
         String Message ;
         String Heading;
         String subClassName = request.getParameter("subClassName"); 
-        int mainClassId = Integer.parseInt(request.getParameter("category")); 
- 
+        String MainClassId = request.getParameter("MainClassId"); 
+        int mainClassId;
+        
+        if (MainClassId != null) {
+            String PageFrom = request.getParameter("PageFrom");
+            mainClassId = Integer.parseInt(MainClassId);
+
+        }else{
+            mainClassId = Integer.parseInt(request.getParameter("category")); 
+        }
+        
         if(subClassName != null){         
             subClass.setSubClassName(subClassName);  
             subClass.setMainClassId(mainClassId);
@@ -131,10 +146,13 @@ public class AddSubClassificationController extends HttpServlet {
         request.setAttribute("Heading", Heading);
         request.setAttribute("SetClasses", setSubClassification); 
         request.setAttribute("Message", Message);
-        request.getRequestDispatcher("/searchAllSubClassifications.jsp").forward(request, response);         
-       
         
-        processRequest(request, response);
+        if(MainClassId != null){
+            request.getRequestDispatcher("ViewMainClassificationController?classId="+mainClassId).forward(request, response);   
+        }else{
+            request.getRequestDispatcher("/searchAllSubClassifications.jsp").forward(request, response);         
+            }       
+       
     }
 
     /**

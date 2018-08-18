@@ -25,12 +25,14 @@
         <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">
 
         <table class="table table-striped" >
+            <thead style="background-color: #357ab7; color: #fff">
             <tr>
                 <th>Sub Classification ID</th>
                 <th>Sub Classification Name</th>     
                 <th>Main Classification Name</th>  
                 <th></th>
             </tr>
+            </thead>
             <c:forEach items="${SetSubClassifications}" var="subClassification">
                 <tr>
                     <td>

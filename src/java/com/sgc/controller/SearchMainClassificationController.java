@@ -91,15 +91,16 @@ public class SearchMainClassificationController extends HttpServlet {
             throws ServletException, IOException {       
 
         String s2 = request.getParameter("mode").toString();
-        String Heading = "";
+        String Heading = "Main Classifications";
         String RecordCount;
+        String Error = "";
         
         if ("edit".equals(s2)) {
             Heading = "Select Classification to Edit";
         } else if ("delete".equals(s2)) {
             Heading = "Select Classification to Delete";
         } else if ("search".equals(s2)){
-            Heading = "Search All Main Classification";
+            Heading = "Search All Main Classifications";
         }else if ("ViewAll".equals(s2)){
             Heading = "View All Main Classifications";
         }else if ("Deleted".equals(s2)){
@@ -107,7 +108,7 @@ public class SearchMainClassificationController extends HttpServlet {
         }else if ("Edited".equals(s2)){
             Heading = "The selected Main Classification is successfully updated!";
         }else if ("Constraint".equals(s2)){
-            Heading = "The selected Main Classification cannot be deleted associated books are available!";
+            Error = "The selected Main Classification cannot be deleted associated books are available!";
         }
         
         Set <MainClassification> setMainClassification = new HashSet();
@@ -125,7 +126,8 @@ public class SearchMainClassificationController extends HttpServlet {
                 RecordCount = "(" + i + ") Record(s) found!";
             }
         
-        request.setAttribute("Message", RecordCount);
+        request.setAttribute("ErrorText", Error);
+        request.setAttribute("RecordCount", RecordCount);
         request.setAttribute("Heading", Heading);
         request.setAttribute("SetClasses", setMainClassification);         
         request.getRequestDispatcher("/searchAllMainClassifications.jsp").forward(request, response);      

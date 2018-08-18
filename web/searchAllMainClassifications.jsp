@@ -22,7 +22,8 @@
         <div class="container" align = "Center" style = "padding-bottom: 15px">
                        <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 800px; display: inline-block;"> ${Heading} </label></h3></div>
 
-        </div>      
+        </div> 
+                       <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> ${ErrorText} </label></h4></div>
 
         <h4><div class="col-md-10 col-md-offset-1" class = "container" style = "padding-bottom:20px;">
                 <form name="Search" action="SearchMainClassificationController" method="post">
@@ -56,16 +57,20 @@
                 </form>
             </div></h4>
 
-        <div class="container" align ="center" > <h4> <label>${Message}</label> </h4></div>
+        <div class="container" align ="center" > <h4> <label>${RecordCount}</label> </h4></div>
 
         <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">          
             <table class="table table-striped" >
+                
+                <thead style="background-color: #357ab7; color: #fff">
+
                 <tr>
                     <th>Main Classification ID</th>
                     <th>Main Classification Name</th>                   
                     <th> </th>
 
                 </tr>
+                </thead>
                 <c:forEach items="${SetClasses}" var="mainClassification">
                     <tr>
                         <td>

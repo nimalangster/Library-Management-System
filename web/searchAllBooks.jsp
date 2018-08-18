@@ -13,6 +13,8 @@
         <title>Search All Books</title>
         <link rel="stylesheet" href ="Contents/CSS/Menu.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+        
     </head>
     <body>
         <%@include file = "Shared/header.jsp" %>    
@@ -59,7 +61,7 @@
 
         <div class="container col-md-10 col-md-offset-1" style="padding-bottom:150px;">          
             <table class="table table-striped" class="form-control">
-                <tr>
+                <thead style="background-color: #357ab7; color: #fff">
                     <th>Book ID</th>
                     <th>Title</th>
                     <th>Author</th>
@@ -72,7 +74,7 @@
                     <th>Last printed Year</th>
                     <th> </th>
 
-                    </tr> 
+                    </thead> 
                 <c:forEach items="${SetBooks}" var="book">
                     <tr>
                         <td>

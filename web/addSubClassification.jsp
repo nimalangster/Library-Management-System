@@ -42,6 +42,13 @@
                 }                
             }
             
+             $(document).ready(function () {
+                if (${MainClassId}){
+                    $("#category").val(${MainClassId});  
+                    $('#category').prop('disabled', true);
+                }
+            });
+            
         </script>
                
          
@@ -84,7 +91,8 @@
                     </tr>   
                 </table>
                   <div align = "right">
-                      
+                      <input type="hidden" id="PageFrom" name = "PageFrom" value="${PageFrom}"/>
+                      <input type="hidden" id="MainClassId" name = "MainClassId" value="${MainClassId}"/>
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Add"  value="Add" style = "min-width: 200px;"/>                    
                     
                     <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Main Menu </button></a>

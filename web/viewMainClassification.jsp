@@ -34,7 +34,8 @@
     <body>
         <%@include file = "Shared/header.jsp" %>    
 
-         <div class="page-header" align = "center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification </label></h3></div>      
+       
+        <div class="container" align = "Center" style="padding-bottom: 50px"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification</label></h3></div>          
         
         <div class="container" padding-bottom = "150px"> 
             <form action ="EditMainClassificationController" method="get" id = "viewForm">
@@ -49,8 +50,38 @@
                         <td> Main Classification Name:</td> 
                         <td> <input  class="form-control" type="text" name = "ClassName" value = "${mainClass.getName()}" > </td>
                     </tr>
+                    
+                     <tr> 
+                        <td> Associated Sub Classifications:</td> 
+                        <td><table class="table table-striped" >
+                            <thead style="">
+                                <tr>
+                                    <th>Sub Classification ID</th>
+                                    <th>Sub Classification Name</th>                   
+                                </tr>
+                            </thead>
+                            <c:forEach items="${SetSubClasses}" var="subClassification">
+                                <tr>
+                                    <td>
+                                        ${subClassification.getSubClassId()}
+                                    </td>
+                                    <td>
+                                        ${subClassification.getSubClassName()}
+                                    </td>      
+
+                                </tr>
+                            </c:forEach>
+                        </table> </td>
+                    </tr>
                 </table>
+                    
+                        
+                    
+                    
                   <input type="hidden" name = "ClassId" value="${mainClass.getId()}">
+                  <div align = "right" style="padding-top: 20px; padding-bottom: 20px"><a href="AddSubClassificationController?mainClassId=${mainClass.getId()}&pageFrom=mainClass" >
+                <button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Add Sub Classification </button></a>         
+                </div>      
                   <div align = "right">
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
                     <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Main Menu </button></a>
