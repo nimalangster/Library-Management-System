@@ -57,7 +57,7 @@
 
                     <tr> 
                         <td> Main Classification Name :</td> 
-                        <td> <input  class="form-control" type="text" name = "ClassName" id = "ClassName"> </td>
+                        <td> <input  class="form-control" type="text" name = "ClassName" id = "ClassName" required> </td>
                     </tr>
                 </table>
                 <div align = "right">
