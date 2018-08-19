@@ -36,6 +36,25 @@
 //                    $("#category").val(<%=request.getAttribute("MainClass").toString()%>);
 //                
             });
+            
+            
+             function formValidation(){
+               
+                var x = $('#subClassName').val();
+                var y = $('#category').val();
+                var errorMessage;
+                if(!x){
+                    errorMessage = "Sub Classification Name can't be empty!";
+                    $('#errorMessage').text(errorMessage);
+                    return false;
+                }else{
+                if(!y){
+                    errorMessage = "Main Classification is required!";
+                    $('#errorMessage').text(errorMessage);
+                    return false;
+                    }
+                }                
+            }
          </script>    
     </head>
     <body >
@@ -52,7 +71,7 @@
             <% if ("ConfirmDelete".equals(mode)) {%>
                 <form action ="DeleteSubClassificationController" method="get" id = "viewForm">
             <%}else{%>
-                <form action ="EditSubClassificationController" method="get" id = "viewForm">  
+            <form action ="EditSubClassificationController" method="get" id = "viewForm" onsubmit="formValidation()">  
             <%}%>
             
                 <table class="table table-striped">
