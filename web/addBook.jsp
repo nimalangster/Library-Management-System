@@ -75,7 +75,7 @@
             
             
             function validateBookId() {                    
-                    
+                  
                     var bookId = $('#BookId').val();                   
                     $('#errorMessage').text("");
                     
@@ -178,7 +178,7 @@
 
                     <tr> 
                         <td>Title :</td> 
-                        <td> <input  class="form-control" type="text" name = "Title"> </td>
+                        <td> <input  class="form-control" type="text" name = "Title" required> </td>
                     </tr>
 
                     <tr> 
@@ -198,7 +198,7 @@
                         <td>Main Classification :</td> 
 
                         <td> 
-                            <select id="category"  name = "category" class="form-control" onchange="PopulateSubClassList()">
+                            <select id="category"  name = "category" class="form-control" onchange="PopulateSubClassList()" required>
                                 <option value = ""> Select Main Classification </option>
                                 <c:forEach items="${SetMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
@@ -210,7 +210,7 @@
                     <tr> 
                         <td> Sub Classification :</td> 
                         
-                        <td> <select name="subCategory" id="subCategory"  class="form-control" >
+                        <td> <select name="subCategory" id="subCategory"  class="form-control" required>
                                 <option value = ""> Select Sub Classification </option>
                                 <c:forEach items="${SetSubClass}" var="subCategory">
                                     <option value="${subCategory.getSubClassId()}">${subCategory.getSubClassName()}</option>
@@ -221,7 +221,7 @@
 
                     <tr> 
                         <td> Year Of Publishing :</td> 
-                        <td> <select id="YearOfPublishing" onchange="populateLPY();" name = "YearOfPublishing" class="form-control">
+                        <td> <select id="YearOfPublishing" onchange="populateLPY();" name = "YearOfPublishing" class="form-control" >
                                 <option value = "0"> Select Year of publishing </option>
                                 <c:forEach items="<%=aLYOP%>" var="lYOP">
                                     <option value="${lYOP.intValue()}">${lYOP.intValue()}</option>
@@ -246,7 +246,7 @@
                 </table>
                 <div align = "right">
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
-                    <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
+                    <a href="home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Cancel </button></a>
                 </div>
             </form>
         </div>
