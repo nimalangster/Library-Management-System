@@ -34,7 +34,7 @@
                         var json = JSON.parse(responsex.responseText);
                         var noOfSubClass = Object.keys(json.SubClassification).length;
 
-                        option = '<option>Select Sub Classification</option>';
+                        option = '<option  value = "">Select Sub Classification</option>';
 
                         for (var x = 0; x < noOfSubClass; x++) {
                             option += '<option value="' + json.SubClassification[x].SubClassificationId + '">' + json.SubClassification[x].SubClassificationName + '</option>';
@@ -87,7 +87,34 @@
                 $("#LastPrintedYear").val(${book.getLastPrintedYear()});
 
             });
-
+            
+            
+             function formValidation(){             
+                            
+                var cat = $('#category').val();
+                var sCat = document.getElementById("subCategory").value;             
+                var errorMessage;
+                
+                if(!cat){
+                    errorMessage = "Main Classification is mandatory!";
+                    $('#errorMessage').text(errorMessage);
+                    return false;
+                }  
+                    if (!sCat) {
+                        errorMessage = "Sub Classification is mandatory!";
+                        $('#errorMessage').text(errorMessage);
+                        return false;
+                    }
+                }                       
+                 
+             function disableForm(){
+                var form = document.getElementById("viewForm");
+                var elements = form.elements;
+                for (var i = 0, len = elements.length; i < len; ++i) {
+                    elements[i].readOnly = true;
+                }          
+                }   
+                
 
         </script>
 
@@ -107,20 +134,21 @@
         <%@include file = "Shared/header.jsp" %>    
 
         <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> View/Update Book </label></h3></div>
+            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> ${Message} </label></h4></div>
 
         <div class="container" padding-bottom = "150px">
 
-            <form action ="EditBookController" method="get" id = "viewForm">
+            <form action ="EditBookController" method="get" id = "viewForm" onsubmit="return formValidation();">
                 <table class="table table-striped">
                     <tr> 
                         <td> Book Id :</td> 
-                        <td> <label  class="form-control" for="male" name = "BookId"> ${book.getBookId()} </label>
+                        <td> <label  class="form-control" for="male" name = "BookId"  id = "BookId"> ${book.getBookId()} </label>
                         </td>
                     </tr>
 
                     <tr> 
                         <td> ISBN No :</td> 
-                        <td> <input  class="form-control" type="text" name = "IsbnNo" value = "${book.getIsbnNo()}" > </td>
+                        <td> <input  class="form-control" type="text" name = "IsbnNo" id = "IsbnNo" value = "${book.getIsbnNo()}" > </td>
                     </tr>
 
                     <tr> 
@@ -144,8 +172,8 @@
                     <tr>
                         <td>Main Classification :</td> 
                         <td>
-                            <select class="form-control" id="category" onchange="PopulateSubClassList()"  name = "category" >
-                                <option>Select Main Classification</option>
+                            <select class="form-control" id="category" onchange="PopulateSubClassList()"  name = "category" required>
+                               <option value = ""> Select Main Classification </option>
                                 <c:forEach items="${SetMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
                                 </c:forEach>
@@ -156,7 +184,8 @@
                     <tr> 
                         <td> Sub Classification :</td> 
                         <td>
-                            <select class="form-control" name="subCategory" id="subCategory" >
+                            <select class="form-control" name="subCategory" id="subCategory" required>
+                               <option value = "0"> Select Sub Classification </option>
                                 <c:forEach items="${SetSubClass}" var="subCategory">
                                     <option value="${subCategory.getSubClassId()}">${subCategory.getSubClassName()}</option>
                                 </c:forEach>
@@ -187,8 +216,8 @@
                 </table>
                 <input type="hidden" value ="${book.getBookId()}" name="BookId" id="BookId"/>
                 <div align = "right">
+                    
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
-                    <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
                     <a href="ViewAllBooksController"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back"  value="Back" style = "min-width: 200px;"> Back</button></a>
                 </div>
             </form>        
