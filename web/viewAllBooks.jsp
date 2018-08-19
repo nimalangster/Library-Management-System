@@ -12,7 +12,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View All Books</title>
         <link rel="stylesheet" href ="Contents/CSS/Menu.css">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <script type="text/javascript">
+
+        function confirmDelete() {
+
+        if (!confirm("Are you sure do you want to delete?")) {
+           return false;
+        } 
+        }
+        </script>
 
     </head>
     <body>
@@ -75,9 +85,9 @@
                         ${book.getLastPrintedYear()}
                     </td>
                     <td>
-                        <a href="ViewBookController?bookId=${book.getBookId()}"> View || <a/> 
+                        <a href="ViewBookController?bookId=${book.getBookId()}&mode=edit"> View || <a/> 
                         <a href = "ViewBookController?bookId=${book.getBookId()}">  Edit || <a/>
-                        <a href = "DeleteBookController?bookId=${book.getBookId()}"> Delete  <a/>
+                            <a href = "DeleteBookController?bookId=${book.getBookId()}" onclick="return confirmDelete();" > Delete  <a/>
                     </td>
                 </tr>
             </c:forEach>
