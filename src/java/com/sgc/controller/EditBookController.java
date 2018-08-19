@@ -71,7 +71,7 @@ public class EditBookController extends HttpServlet {
         book.setTitle(request.getParameter("Title"));
         book.setAuthor(request.getParameter("Author"));  
         book.setIsbnNo(request.getParameter("IsbnNo"));
-         if(request.getParameter("NoOfPages")!="");
+        if(request.getParameter("NoOfPages")!="")
         book.setNoOfPages(Integer.parseInt(request.getParameter("NoOfPages")));
         book.setPublisher(request.getParameter("Publisher"));        
         book.setMainClassification(Integer.parseInt(request.getParameter("category")));
