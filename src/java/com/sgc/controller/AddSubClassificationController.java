@@ -106,10 +106,10 @@ public class AddSubClassificationController extends HttpServlet {
         String MainClassId = request.getParameter("MainClassId"); 
         int mainClassId;
         
-        if (MainClassId != null) {
+         if(!"".equals(MainClassId)){
+        
             String PageFrom = request.getParameter("PageFrom");
             mainClassId = Integer.parseInt(MainClassId);
-
         }else{
             mainClassId = Integer.parseInt(request.getParameter("category")); 
         }
@@ -147,7 +147,7 @@ public class AddSubClassificationController extends HttpServlet {
         request.setAttribute("SetClasses", setSubClassification); 
         request.setAttribute("Message", Message);
         
-        if(MainClassId != null){
+         if(!"".equals(MainClassId)){
             request.getRequestDispatcher("ViewMainClassificationController?classId="+mainClassId).forward(request, response);   
         }else{
             request.getRequestDispatcher("/searchAllSubClassifications.jsp").forward(request, response);         
