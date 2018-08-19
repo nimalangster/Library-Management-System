@@ -15,6 +15,17 @@
         <title>Search All Main Classifications</title>
         <link rel="stylesheet" href ="Contents/CSS/Menu.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      
+        <script type="text/javascript">
+
+        function confirmDelete() {
+
+        if (!confirm("Are you sure do you want to delete?")) {
+           return false;
+        } 
+        }
+        </script>
+    
     </head>
     <body>
         <%@include file = "Shared/header.jsp" %>    
@@ -83,7 +94,7 @@
                         <td>
                             <a href="ViewMainClassificationController?classId=${mainClassification.getId()}"> View || <a/> 
                                 <a href = "ViewMainClassificationController?classId=${mainClassification.getId()}">  Edit || <a/>
-                                    <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}"> Delete  <a/>
+                                    <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}" onclick="return confirmDelete();" > Delete  <a/>
                         </td>
                     </tr>
                 </c:forEach>
