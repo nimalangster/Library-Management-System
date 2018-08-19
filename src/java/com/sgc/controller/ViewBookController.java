@@ -68,6 +68,7 @@ public class ViewBookController extends HttpServlet {
             throws ServletException, IOException {
 
             int bookId = Integer.parseInt(request.getParameter("bookId"));
+            String mode = request.getParameter("mode");
             Book book = new Book();
             bookDao = new BookDAO();
             book = bookDao.getBookById(bookId);                  
@@ -81,6 +82,9 @@ public class ViewBookController extends HttpServlet {
             request.setAttribute("book", book);
             request.setAttribute("SetMainClass", setMainClass);
             request.setAttribute("SetSubClass", setSubClass);
+            
+            if(!"".equals(mode))
+            request.setAttribute("mode", mode);
             
             request.getRequestDispatcher("/viewBook.jsp").forward(request, response);
 
