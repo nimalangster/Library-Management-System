@@ -28,7 +28,21 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
-            <%@page import="com.sgc.data.BookDAO,com.sgc.model.Book,com.sgc.data.MainClassDAO,com.sgc.data.SubClassDAO"%>           
+            <%@page import="com.sgc.data.BookDAO,com.sgc.model.Book,com.sgc.data.MainClassDAO,com.sgc.data.SubClassDAO"%>   
+                
+                function formValidation(){
+
+                 var x = $('#ClassName').val();
+                 var errorMessage;
+                 if(!x){
+                     errorMessage = "Main Classification Name can't be empty!";
+                     $('#errorMessage').text(errorMessage);
+                     return false;
+                    }
+                 }                
+                
+                
+                
         </script>
     </head>
     <body>
@@ -38,7 +52,7 @@
         <div class="container" align = "Center" style="padding-bottom: 50px"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification</label></h3></div>          
         
         <div class="container" padding-bottom = "150px"> 
-            <form action ="EditMainClassificationController" method="get" id = "viewForm">
+            <form action ="EditMainClassificationController" method="get" id = "viewForm" onsubmit="formValidation()">
                 <table class="table table-striped">
                     <tr> 
                         <td> Main Classification Id :</td> 
