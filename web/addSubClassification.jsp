@@ -75,13 +75,13 @@
 
                     <tr> 
                         <td> Sub Classification Name:</td> 
-                        <td> <input  class="form-control" type="text" name = "subClassName" value = "" id="subClassName"> </td>
+                        <td> <input  class="form-control" type="text" name = "subClassName" value = "" id="subClassName" required> </td>
                     </tr>       
                     
                     <tr> 
                         <td> Main Classification Name:</td> 
                         <td>
-                        <select id="category"  name="category" class="form-control" >
+                        <select id="category"  name="category" class="form-control" required>
                                 <option value=""> Select Main Classification </option> 
                                 <c:forEach items="${setMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
