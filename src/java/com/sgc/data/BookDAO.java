@@ -53,15 +53,15 @@ public class BookDAO implements BookDAOInterface {
     public Book getBookById(int id) {
 
         int bookId = id;
-
-        try {
-            Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM book b "
+        String sql = "SELECT * FROM book b "
                     + "JOIN main_classification mc "
                     + "ON b.mainClassificationId = mc.mainClassificationId "
                     + "JOIN sub_classification sc "
                     + "ON b.subClassificationId = sc.subClassificationId "
-                    + "WHERE b.bookId = " + bookId);
+                    + "WHERE b.bookId = " + bookId ;
+        try {
+            Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
 
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
