@@ -168,7 +168,7 @@
                 <table class="table table-striped">
                     <tr> 
                         <td> Book Id :</td> 
-                        <td> <input  class="form-control" type="number" name = "BookId" id = "BookId" onfocusout = "validateBookId()"> </td>
+                        <td> <input  class="form-control" type="number" name = "BookId" id = "BookId" onfocusout = "validateBookId()" required> </td>
                     </tr>
 
                     <tr> 
@@ -246,7 +246,7 @@
                 </table>
                 <div align = "right">
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
-                    <a href="home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Cancel </button></a>
+                    <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Cancel </button></a>
                 </div>
             </form>
         </div>
