@@ -66,7 +66,7 @@ public class DeleteBookController extends HttpServlet {
             throws ServletException, IOException {
         
         
-        int bookId = Integer.parseInt(request.getParameter("bookId"));  
+        int bookId = Integer.parseInt(request.getParameter("BookId"));  
         
         try{
             
