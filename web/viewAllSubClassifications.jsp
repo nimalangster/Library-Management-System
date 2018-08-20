@@ -54,8 +54,8 @@
                     </td>
                     
                     <td>
-                        <a href= "ViewSubClassificationController?classId=${subClassification.getSubClassId()}"> View || <a/> 
-                        <a href = "ViewSubClassificationController?classId=${subClassification.getSubClassId()}">  Edit || <a/>
+                        <a href= "ViewSubClassificationController?classId=${subClassification.getSubClassId()}&mode=view"> View || <a/> 
+                        <a href = "ViewSubClassificationController?classId=${subClassification.getSubClassId()}&mode=edit">  Edit || <a/>
                         <a href = "ViewSubClassificationController?mode=ToDelete&classId=${subClassification.getSubClassId()}"> Delete  <a/>
                     </td>
                 </tr>
