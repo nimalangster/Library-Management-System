@@ -55,16 +55,29 @@
                     }
                 }                
             }
+            
+            
+             function disableForm(){
+                $("#ClassName", "#ViewForm").prop('disabled',true);
+                
+                }   
          </script>    
     </head>
-    <body >
+     <% if (("view".equals(mode))|| ("ConfirmDelete".equals(mode))) {%>
+            <body onload="disableForm();" >
+    <% } else {%>
+            <body> <% } %> 
         <%@include file = "Shared/header.jsp" %>   
         
          <% if ("ConfirmDelete".equals(mode)) {%>
-            <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> Are you sure you want to delete this sub classification? </label></h3></div>             
-            <%}else{%>
-            <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View or Edit Sub Classification </label></h3></div>        
-            <%}%>
+            <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> Delete Sub Classification </label></h3></div>             
+            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> Are you sure you want to delete this sub classification? </label></h4></div>
+
+            <%}else if("view".equals(mode))  {%>
+            <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Sub Classification </label></h3></div>        
+            <%} else {%>
+            <div class="container" align = "Center"><h3> <label class="label label-primary" class="page-header" name = "heading"> Edit Sub Classification </label></h3></div> 
+            <% } %>
             
         <div class="container" padding-bottom = "150px">  
             
@@ -83,13 +96,13 @@
 
                     <tr> 
                         <td> Sub Classification Name:</td> 
-                        <td> <input  class="form-control" type="text" name = "ClassName" value = "${subClass.getSubClassName()}" > </td>
+                        <td> <input  class="form-control" type="text" name = "ClassName" id ="ClassName" value = "${subClass.getSubClassName()}" required> </td>
                     </tr>       
                     
                     <tr> 
                         <td> Main Classification Name:</td> 
                         <td>
-                        <select id="category"  name="category" class="form-control" >
+                        <select id="category"  name="category" class="form-control" required>
 
                                 <c:forEach items="${setMainClass}" var="category">
                                     <option value="${category.getId()}">${category.getName()}</option>
@@ -103,11 +116,10 @@
                   <div align = "right">
                       <% if ("ConfirmDelete".equals(mode)) {%>
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Delete"  value="Delete" style = "min-width: 200px;"/>
-                    <% }else {%>
+                    <% }else if("edit".equals(mode))  {%>
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Update"  value="Update" style = "min-width: 200px;"/>
-                    <% }%>
-                    <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Main Menu </button></a>
-                    <a href="SearchSubClassificationController?from=ViewAll&mode=ViewAll"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back"  value="Back" style = "min-width: 200px;"> Back</button></a>
+                    <% }%>                   
+                    <a href="SearchSubClassificationController?from=ViewAll&mode=ViewAll"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back"  value="Back" style = "min-width: 200px;"> Cancel</button></a>
                 </div>
             </form>        
         </div>
