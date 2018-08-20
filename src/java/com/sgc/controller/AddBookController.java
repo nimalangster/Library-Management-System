@@ -111,18 +111,23 @@ public class AddBookController extends HttpServlet {
         if(!"".equals(x)){
             book.setNoOfPages(Integer.parseInt(request.getParameter("NoOfPages")));
         }else{
-            book.setNoOfPages(Integer.parseInt("0"));
+           // book.setNoOfPages(Integer.parseInt("0"));
         }
         book.setPublisher(request.getParameter("Publisher"));        
         
         book.setMainClassification(Integer.parseInt(request.getParameter("category")));          
        
-        book.setSubClassification(Integer.parseInt(request.getParameter("subCategory")));        
+        book.setSubClassification(Integer.parseInt(request.getParameter("subCategory")));  
         
-        book.setYearOfPublishing(Integer.parseInt(request.getParameter("YearOfPublishing")));         
-                
-        book.setLastPrintedYear(Integer.parseInt(request.getParameter("LastPrintedYear")));  
+        String yOP = request.getParameter("YearOfPublishing");
+        if(!"".equals(yOP)){
+        book.setYearOfPublishing(Integer.parseInt(yOP));  
+        }
         
+        String lPY = request.getParameter("LastPrintedYear");
+        if(!"".equals(lPY)){        
+        book.setLastPrintedYear(Integer.parseInt(lPY));  
+        }
         
         try {
                 bookDao.insertBook(book);
