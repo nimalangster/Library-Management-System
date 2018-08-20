@@ -72,9 +72,12 @@ public class ViewMainClassificationController extends HttpServlet {
 
         if (!"".equals(request.getParameter("classId"))) {
             int classId = Integer.parseInt(request.getParameter("classId"));
+            String mode = request.getParameter("mode");
             mainClass = mainClassDao.getMainClassById(classId);
             setSubClass = subClassDao.getSubClassesByMainClassId(classId);
 
+            if(!"".equals(mode))
+            request.setAttribute("mode", mode);
             request.setAttribute("SetSubClasses", setSubClass);
             request.setAttribute("mainClass", mainClass);
 
