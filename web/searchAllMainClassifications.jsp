@@ -92,9 +92,9 @@
                         </td>
 
                         <td>
-                            <a href="ViewMainClassificationController?classId=${mainClassification.getId()}"> View || <a/> 
-                                <a href = "ViewMainClassificationController?classId=${mainClassification.getId()}">  Edit || <a/>
-                                    <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}" onclick="return confirmDelete();" > Delete  <a/>
+                            <a href="ViewMainClassificationController?classId=${mainClassification.getId()}&mode=view"> View || <a/> 
+                                <a href = "ViewMainClassificationController?classId=${mainClassification.getId()}&mode=edit">  Edit || <a/>
+                                    <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}&mode=delete" onclick="return confirmDelete();" > Delete  <a/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -102,7 +102,7 @@
 
         <div align ="right">
             <a href="addMainClassification.jsp"><button class="btn btn-primary dropdown-toggle" type="button" id="AddClass" align="right" style = "min-width: 200px;"> Add Main Class </button></a>
-            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Cancel </button></a>
         </div>
         </div>
     </body>
