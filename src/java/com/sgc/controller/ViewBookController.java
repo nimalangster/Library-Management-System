@@ -86,7 +86,12 @@ public class ViewBookController extends HttpServlet {
             if(!"".equals(mode))
             request.setAttribute("mode", mode);
             
-            request.getRequestDispatcher("/viewBook.jsp").forward(request, response);
+             if("delete".equals(request.getParameter("mode"))){
+                request.getRequestDispatcher("/viewBook.jsp?mode=delete").forward(request, response);
+             }
+            else{
+                request.getRequestDispatcher("/viewBook.jsp").forward(request, response);
+            }            
 
     }
 
