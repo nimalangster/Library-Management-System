@@ -79,6 +79,10 @@
 
 
             $(document).ready(function () {
+               
+            <%                
+                String mode = request.getParameter("mode");
+            %>
 
                 $("#category").val(${book.getMainClassification()});                 
                 PopulateSubClassList();
@@ -108,11 +112,19 @@
                 }                       
                  
              function disableForm(){
-                var form = document.getElementById("viewForm");
-                var elements = form.elements;
-                for (var i = 0, len = elements.length; i < len; ++i) {
-                    elements[i].readOnly = true;
-                }          
+                 
+                  $("#IsbnNo", "#viewForm").prop('disabled',true);
+                  $("#Title", "#viewForm").prop('disabled',true);
+                  $("#Author", "#viewForm").prop('disabled',true);
+                  $("#Publisher", "#viewForm").prop('disabled',true);
+                  $("#NoOfPages", "#viewForm").prop('disabled',true);
+                  $("#category", "#viewForm").prop('disabled',true);
+                  $("#subCategory", "#viewForm").prop('disabled',true);
+                  $("#YearOfPublishing", "#viewForm").prop('disabled',true);
+                  $("#LastPrintedYear", "#viewForm").prop('disabled',true);
+                  $("#Back", "#viewForm").prop('disabled',false);
+                  $("#Delete", "#viewForm").prop('disabled',false);
+                  $("#BookId", "#viewForm").prop('disabled',false);
                 }   
                 
 
@@ -129,20 +141,35 @@
         }
         aLYOP.get(10).intValue();
     %>
-    <body>
+    
+    <% if (("view".equals(mode))|| ("delete".equals(mode))) {%>
+            <body onload="disableForm();" >
+    <% } else {%>
+            <body> <% } %> 
 
         <%@include file = "Shared/header.jsp" %>    
+        <% if ("view".equals(mode)) {%>
+                <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> View Book </label></h3></div>
+         <%} else if ("edit".equals(mode)){%>
+                <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> Edit Book </label></h3></div>
+         <% } else if ("delete".equals(mode)) {%>   
+                <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> Delete Book </label></h3></div>
+                <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> Are you sure you want to delete this book? </label></h4></div>
 
-        <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> View/Update Book </label></h3></div>
-            <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> ${Message} </label></h4></div>
+        <% } %>
+        <div class="container" align = "Center" ><h4><label  id = "errorMessage"  style = "color: red" style="width: 400px; display: inline-block;"> ${Message} </label></h4></div>
 
         <div class="container" padding-bottom = "150px">
-
-            <form action ="EditBookController" method="get" id = "viewForm" onsubmit="return formValidation();">
+            <% if ("delete".equals(mode)) {%>
+                <form action ="DeleteBookController" method="get" id = "viewForm">
+            <%}else{%>
+             <form action ="EditBookController" method="get" id = "viewForm" onsubmit="return formValidation();">
+            <%}%>
+           
                 <table class="table table-striped">
                     <tr> 
                         <td> Book Id :</td> 
-                        <td> <label  class="form-control" for="male" name = "BookId"  id = "BookId"> ${book.getBookId()} </label>
+                        <td> <label  class="form-control" for="id" name = "BookId"  id = "BookId"> ${book.getBookId()} </label>
                         </td>
                     </tr>
 
@@ -153,21 +180,21 @@
 
                     <tr> 
                         <td>Title :</td> 
-                        <td> <input  class="form-control" type="text" name = "Title" value = "${book.getTitle()}"> </td>
+                        <td> <input  class="form-control" type="text" name = "Title" id = "Title" value = "${book.getTitle()}"> </td>
                     </tr>
 
                     <tr> 
                         <td>Author :</td> 
-                        <td> <input type="text" class="form-control" name = "Author" value = "${ book.getAuthor()}"> </td>
+                        <td> <input type="text" class="form-control" name = "Author" id = "Author"  value = "${ book.getAuthor()}"> </td>
                     </tr
                     <tr> 
                         <td> Publisher :</td> 
-                        <td> <input  class="form-control" type="text" name = "Publisher" value = "${ book.getPublisher()}"> </td>
+                        <td> <input  class="form-control" type="text" name = "Publisher"  id = "Publisher" value = "${ book.getPublisher()}"> </td>
                     </tr>
 
                     <tr> 
                         <td>No Of Pages :</td> 
-                        <td> <input  class="form-control" type="text" name = "NoOfPages" value = "${ book.getNoOfPages()}"> </td>
+                        <td> <input  class="form-control" type="text" name = "NoOfPages"  id = "NoOfPages"  value = "${ book.getNoOfPages()}"> </td>
                     </tr>
                     <tr>
                         <td>Main Classification :</td> 
@@ -216,11 +243,14 @@
                 </table>
                 <input type="hidden" value ="${book.getBookId()}" name="BookId" id="BookId"/>
                 <div align = "right">
-                    
+                <% if ("edit".equals(mode)) {%>    
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
-                    <a href="ViewAllBooksController"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back"  value="Back" style = "min-width: 200px;"> Back</button></a>
-                </div>
-            </form>        
+                <% } else if ("delete".equals(mode)) { %>   
+                    <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Delete"  id="Delete" value="Delete" style = "min-width: 200px;"/>
+                <%}%>
+                    <a href="ViewAllBooksController"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back" id="Back" value="Back" style = "min-width: 200px;"> Cancel</button></a>
+                </div>    
+                </form> 
         </div>
 
     </body>
