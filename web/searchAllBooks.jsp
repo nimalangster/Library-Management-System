@@ -116,9 +116,9 @@
                             ${book.getLastPrintedYear()}
                         </td>
                         <td>
-                            <a href="ViewBookController?bookId=${book.getBookId()}"> View || <a/> 
-                                <a href = "ViewBookController?bookId=${book.getBookId()}">  Edit || <a/>
-                                    <a href = "DeleteBookController?bookId=${book.getBookId()}" onclick="return confirmDelete();" > Delete  <a/>
+                            <a href="ViewBookController?bookId=${book.getBookId()}&mode=view"> View || <a/> 
+                                <a href = "ViewBookController?bookId=${book.getBookId()}&mode=edit">  Edit || <a/>
+                                    <a href = "ViewBookController?bookId=${book.getBookId()}&mode=delete"  > Delete  <a/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -126,7 +126,7 @@
 
         <div align ="right">
             <!--<a href="addBook.jsp"><button class="btn btn-info" type="button" id="AddBook" align="right"> Add Book </button></a>-->
-            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" class="form-control" style = "min-width: 200px;"> Home </button></a>
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" class="form-control" style = "min-width: 200px;"> Cancel </button></a>
         </div>
     </div>
 </body>
