@@ -49,9 +49,9 @@
                     </td>                 
                     
                     <td>
-                        <a href="ViewMainClassificationController?classId=${mainClassification.getId()}"> View || <a/> 
-                        <a href = "ViewMainClassificationController?classId=${mainClassification.getId()}">  Edit || <a/>
-                        <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}" onclick="return confirmDelete();" > Delete  <a/>
+                        <a href="ViewMainClassificationController?classId=${mainClassification.getId()}&mode=view"> View || <a/> 
+                        <a href = "ViewMainClassificationController?classId=${mainClassification.getId()}&mode=edit">  Edit || <a/>
+                        <a href = "DeleteMainClassificationController?classId=${mainClassification.getId()}&mode=delete" onclick="return confirmDelete();" > Delete  <a/>
                     </td>
                 </tr>
             </c:forEach>
