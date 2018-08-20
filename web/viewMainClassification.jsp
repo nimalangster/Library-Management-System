@@ -40,17 +40,32 @@
                      return false;
                     }
                  }                
+                 $(document).ready(function () {
+               
+                    <%                
+                        String mode = request.getParameter("mode");
+                    %>
+                }  
                 
+                function disableForm(){
+                $("#ClassName", "#ViewForm").prop('disabled',true);
                 
+                }   
                 
         </script>
     </head>
-    <body>
+    <% if (("view".equals(mode))) {%>
+            <body onload="disableForm();" >
+    <% } else {%>
+            <body> <% } %> 
+        
         <%@include file = "Shared/header.jsp" %>    
 
-       
-        <div class="container" align = "Center" style="padding-bottom: 50px"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification</label></h3></div>          
-        
+        <% if ("view".equals(mode)) {%>
+            <div class="container" align = "Center" style="padding-bottom: 50px"><h3> <label class="label label-primary" class="page-header" name = "heading"> View Main Classification</label></h3></div>          
+        <%} else {%>
+            <div class="container" align = "Center" style="padding-bottom: 50px"><h3> <label class="label label-primary" class="page-header" name = "heading"> Edit Main Classification</label></h3></div>          
+        <% } %>    
         <div class="container" padding-bottom = "150px"> 
             <form action ="EditMainClassificationController" method="get" id = "viewForm" onsubmit="formValidation()">
                 <table class="table table-striped">
@@ -62,7 +77,7 @@
 
                     <tr> 
                         <td> Main Classification Name:</td> 
-                        <td> <input  class="form-control" type="text" name = "ClassName" value = "${mainClass.getName()}" > </td>
+                        <td> <input  class="form-control" type="text" name = "ClassName" id ="ClassName"  value = "${mainClass.getName()} " required> </td>
                     </tr>
                     
                      <tr> 
@@ -93,12 +108,17 @@
                     
                     
                   <input type="hidden" name = "ClassId" value="${mainClass.getId()}">
-                  <div align = "right" style="padding-top: 20px; padding-bottom: 20px"><a href="AddSubClassificationController?mainClassId=${mainClass.getId()}&pageFrom=mainClass" >
-                <button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Add Sub Classification </button></a>         
+                  <div align = "right" style="padding-top: 20px; padding-bottom: 20px">
+                     <% if ("edit".equals(mode)) {%>  
+                        <a href="AddSubClassificationController?mainClassId=${mainClass.getId()}&pageFrom=mainClass" >
+                        <button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Add Sub Classification </button></a>   
+                     <% } %>    
                 </div>      
                   <div align = "right">
+                      <% if ("edit".equals(mode)) {%>  
                     <input type = "submit" class="btn btn-primary dropdown-toggle" name = "Save"  value="Save" style = "min-width: 200px;"/>
-                    <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Main Menu </button></a>
+                    <% } %> 
+                   
                     <a href="SearchMainClassificationController?from=ViewAll&mode=ViewAll"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Back"  value="Back" style = "min-width: 200px;"> Back</button></a>
                 </div>
             </form>        
