@@ -94,9 +94,9 @@
                         </td>
 
                         <td>
-                            <a href="ViewSubClassificationController?classId=${subClassification.getSubClassId()}"> View || <a/> 
-                                <a href = "ViewSubClassificationController?classId=${subClassification.getSubClassId()}">  Edit || <a/>
-                                    <a href = "ViewSubClassificationController?mode=ToDelete&classId=${subClassification.getSubClassId()}" > Delete  <a/>
+                            <a href="ViewSubClassificationController?classId=${subClassification.getSubClassId()}&mode=view"> View || <a/> 
+                                <a href = "ViewSubClassificationController?classId=${subClassification.getSubClassId()}&mode=edit">  Edit || <a/>
+                                <a href = "ViewSubClassificationController?mode=ToDelete&classId=${subClassification.getSubClassId()}" > Delete  <a/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -104,7 +104,7 @@
 
         <div align ="right">
             <a href="AddSubClassificationController"><button class="btn btn-primary dropdown-toggle" type="button" id="AddClass" align="right" style = "min-width: 200px;"> Add Sub Class </button></a>
-            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Home </button></a>
+            <a href="Home.jsp"><button  type = "button" class="btn btn-primary dropdown-toggle" name = "Home"  value="Home" style = "min-width: 200px;"> Cancel </button></a>
         </div>
         </div>
     </body>
