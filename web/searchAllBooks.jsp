@@ -101,7 +101,8 @@
                             ${book.getIsbnNo()}
                         </td>
                         <td>
-                            ${book.getNoOfPages()}
+                            <c:set var="nop" scope="session" value="${book.getNoOfPages()}"/>  
+                            <c:out value="${nop == 0  ? '---': nop }"/>     
                         </td>
                         <td>
                             ${book.getMainClassificationName()}
@@ -110,10 +111,12 @@
                             ${book.getSubClassificationName()}
                         </td>
                         <td>
-                            ${book.getYearOfPublishing()}
+                            <c:set var="yop" scope="session" value="${book.getYearOfPublishing()}"/>  
+                            <c:out value="${yop == 0  ? '---': yop }"/>       
                         </td>
                         <td>
-                            ${book.getLastPrintedYear()}
+                            <c:set var="lpy" scope="session" value="${book.getLastPrintedYear()}"/>  
+                            <c:out value="${lpy == 0  ? '---': lpy }"/>      
                         </td>
                         <td>
                             <a href="ViewBookController?bookId=${book.getBookId()}&mode=view"> View || <a/> 
