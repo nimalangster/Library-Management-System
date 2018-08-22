@@ -148,7 +148,7 @@ public class AddSubClassificationController extends HttpServlet {
         request.setAttribute("Message", Message);
         
          if(!"".equals(MainClassId)){
-            request.getRequestDispatcher("ViewMainClassificationController?classId="+mainClassId).forward(request, response);   
+            request.getRequestDispatcher("ViewMainClassificationController?mode=edit&classId="+mainClassId).forward(request, response);   
         }else{
             request.getRequestDispatcher("/searchAllSubClassifications.jsp").forward(request, response);         
             }       

@@ -81,9 +81,7 @@ public class ViewMainClassificationController extends HttpServlet {
             request.setAttribute("SetSubClasses", setSubClass);
             request.setAttribute("mainClass", mainClass);
 
-            request.getRequestDispatcher("/viewMainClassification.jsp").forward(request, response);
-
-            
+            request.getRequestDispatcher("/viewMainClassification.jsp").forward(request, response);            
         }
     }
     /**
@@ -102,14 +100,15 @@ public class ViewMainClassificationController extends HttpServlet {
             int classId = Integer.parseInt(request.getParameter("classId"));
             mainClass = mainClassDao.getMainClassById(classId);
             setSubClass = subClassDao.getSubClassesByMainClassId(classId);
+            String mode = request.getParameter("mode");
+            if(!"".equals(mode))
+                        request.setAttribute("mode", mode);
 
             request.setAttribute("SetSubClasses", setSubClass);
             request.setAttribute("mainClass", mainClass);
 
-            request.getRequestDispatcher("/viewMainClassification.jsp").forward(request, response);
-
-        
-    }
+            request.getRequestDispatcher("/viewMainClassification.jsp").forward(request, response);        
+        }
     }
     /**
      * Returns a short description of the servlet.

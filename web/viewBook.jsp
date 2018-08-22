@@ -82,14 +82,18 @@
                
             <%                
                 String mode = request.getParameter("mode");
+                
             %>
-
                 $("#category").val(${book.getMainClassification()});                 
                 PopulateSubClassList();
                 $("#subCategory").val(${book.getSubClassification()});
                 $("#YearOfPublishing").val(${book.getYearOfPublishing()});
-                $("#LastPrintedYear").val(${book.getLastPrintedYear()});
-
+                $("#LastPrintedYear").val(${book.getLastPrintedYear()});                
+                if(${book.getNoOfPages()} == 0){
+                    $("#NoOfPages").val("---");
+                }else{
+                    $("#NoOfPages").val(${ book.getNoOfPages()});
+                }
             });
             
             
@@ -194,7 +198,7 @@
 
                     <tr> 
                         <td>No Of Pages :</td> 
-                        <td> <input  class="form-control" type="text" name = "NoOfPages"  id = "NoOfPages"  value = "${ book.getNoOfPages()}"> </td>
+                        <td> <input  class="form-control" type="text" name = "NoOfPages"  id = "NoOfPages"  value = ""> </td>
                     </tr>
                     <tr>
                         <td>Main Classification :</td> 
@@ -212,7 +216,7 @@
                         <td> Sub Classification :</td> 
                         <td>
                             <select class="form-control" name="subCategory" id="subCategory" required>
-                               <option value = "0"> Select Sub Classification </option>
+                               <option value = ""> Select Sub Classification </option>
                                 <c:forEach items="${SetSubClass}" var="subCategory">
                                     <option value="${subCategory.getSubClassId()}">${subCategory.getSubClassName()}</option>
                                 </c:forEach>

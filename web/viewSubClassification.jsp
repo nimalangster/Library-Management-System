@@ -58,8 +58,8 @@
             
             
              function disableForm(){
-                $("#ClassName", "#ViewForm").prop('disabled',true);
-                
+                $("#ClassName", "#viewForm").prop('disabled',true);
+                $("#category", "#viewForm").prop('disabled',true);
                 }   
          </script>    
     </head>

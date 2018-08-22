@@ -30,34 +30,35 @@
         <script type="text/javascript">
             <%@page import="com.sgc.data.BookDAO,com.sgc.model.Book,com.sgc.data.MainClassDAO,com.sgc.data.SubClassDAO"%>   
                 
-                function formValidation(){
+            function formValidation(){
 
-                 var x = $('#ClassName').val();
-                 var errorMessage;
-                 if(!x){
-                     errorMessage = "Main Classification Name can't be empty!";
-                     $('#errorMessage').text(errorMessage);
-                     return false;
-                    }
-                 }                
-                 $(document).ready(function () {
-               
-                    <%                
-                        String mode = request.getParameter("mode");
-                    %>
-                }  
+             var x = $('#ClassName').val();
+             var errorMessage;
+             if(!x){
+                 errorMessage = "Main Classification Name can't be empty!";
+                 $('#errorMessage').text(errorMessage);
+                 return false;
+                }
+             } 
+             
+            $(document).ready(function () {                              
+                <%
+                    String mode = request.getParameter("mode");
+                %>
+            }  
                 
-                function disableForm(){
-                $("#ClassName", "#ViewForm").prop('disabled',true);
-                
-                }   
+            function disableForm(){
+                $("#ClassName", "#viewForm").prop('disabled',true);
+            }   
                 
         </script>
     </head>
-    <% if (("view".equals(mode))) {%>
+    
+    <% if (("view".equals(mode))|| ("ConfirmDelete".equals(mode))) {%>
             <body onload="disableForm();" >
     <% } else {%>
             <body> <% } %> 
+   
         
         <%@include file = "Shared/header.jsp" %>    
 
@@ -77,7 +78,7 @@
 
                     <tr> 
                         <td> Main Classification Name:</td> 
-                        <td> <input  class="form-control" type="text" name = "ClassName" id ="ClassName"  value = "${mainClass.getName()} " required> </td>
+                        <td> <input  class="form-control" type="text"  id = "ClassName"  name = "ClassName"  value = "${mainClass.getName()}" required> </td>
                     </tr>
                     
                      <tr> 
@@ -103,9 +104,6 @@
                         </table> </td>
                     </tr>
                 </table>
-                    
-                        
-                    
                     
                   <input type="hidden" name = "ClassId" value="${mainClass.getId()}">
                   <div align = "right" style="padding-top: 20px; padding-bottom: 20px">
