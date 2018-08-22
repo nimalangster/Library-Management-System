@@ -222,7 +222,7 @@
                     <tr> 
                         <td> Year Of Publishing :</td> 
                         <td> <select id="YearOfPublishing" onchange="populateLPY();" name = "YearOfPublishing" class="form-control" >
-                                <option value = "0"> Select Year of publishing </option>
+                                <option value = ""> Select Year of publishing </option>
                                 <c:forEach items="<%=aLYOP%>" var="lYOP">
                                     <option value="${lYOP.intValue()}">${lYOP.intValue()}</option>
                                 </c:forEach>
@@ -233,7 +233,7 @@
                     <tr> 
                         <td> Last printed Year :</td> 
                         <td> <select  id = "LastPrintedYear" name = "LastPrintedYear" class="form-control"> 
-                            <option value = "0"> Select last printed year </option>
+                            <option value = ""> Select last printed year </option>
                             </select> 
                         </td>
                     </tr>
