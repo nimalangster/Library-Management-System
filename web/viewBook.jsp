@@ -147,9 +147,9 @@
     %>
     
     <% if (("view".equals(mode))|| ("delete".equals(mode))) {%>
-            <body onload="disableForm();" >
+            <body style = "zoom:80%" onload="disableForm();" >
     <% } else {%>
-            <body> <% } %> 
+            <body style = "zoom:80%"> <% } %> 
 
         <%@include file = "Shared/header.jsp" %>    
         <% if ("view".equals(mode)) {%>

@@ -24,7 +24,7 @@
         </script>
       
     </head>
-    <body>
+    <body style = "zoom:80%">
         <%@include file = "Shared/header.jsp" %>    
 
         <div class="container" align = "Center" style = "padding-bottom: 15px">

@@ -155,7 +155,7 @@
 
 
     %>  
-    <body>
+    <body style = "zoom:80%">
         <%@include file = "Shared/header.jsp" %>  
         
             <div class="container" align = "Center" style="padding-bottom: 0px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading" style="width: 400px; display: inline-block;"> Add Book </label></h3></div>

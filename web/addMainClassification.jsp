@@ -38,7 +38,7 @@
     </head>
     <%@page import="com.sgc.data.BookDAO,com.sgc.model.Book,com.sgc.data.MainClassDAO,com.sgc.data.SubClassDAO"%>  
 
-    <body>
+    <body style = "zoom : 80%">
         <%@include file = "Shared/header.jsp" %>    
 
         <div class="container" align = "Center" style="padding-bottom: 20px; padding-top: 0px;"><h3><label class="label label-primary" name = "heading"style="width: 400px; display: inline-block;"> Add Main Classification </label></h3></div>

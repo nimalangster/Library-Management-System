@@ -23,7 +23,7 @@
         }
         </script>
     </head>
-    <body>
+    <body style = "zoom:80%">
                  <%@include file = "Shared/header.jsp" %>  
         
         <div class="page-header" align = "center"><h3>View All Main Classifications</h3></div>

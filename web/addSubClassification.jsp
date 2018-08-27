@@ -54,7 +54,7 @@
          
         
     </head>
-    <body >
+    <body style = "zoom:80%" >
         <%@include file = "Shared/header.jsp" %>   
         
          

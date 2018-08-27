@@ -55,9 +55,9 @@
     </head>
     
     <% if (("view".equals(mode))|| ("ConfirmDelete".equals(mode))) {%>
-            <body onload="disableForm();" >
+            <body  style = "zoom:80%" onload="disableForm();" >
     <% } else {%>
-            <body> <% } %> 
+            <body style = "zoom:80%"> <% } %> 
    
         
         <%@include file = "Shared/header.jsp" %>    
